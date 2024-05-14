@@ -1,6 +1,6 @@
+import closeSvg from "assets/close.svg";
 import { useEffect } from "react";
 import { ModalContent, Modal, ModalChildren, ModalCloseBtn, ModalClosetSvg } from "./Modal.styled";
-import closeSvg from "assets/close.svg";
 
 export const ModalWindow = ({ isOpen, onClose, children }) => {
   const body = document.querySelector("body");
