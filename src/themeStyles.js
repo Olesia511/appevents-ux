@@ -3,6 +3,7 @@ export const theme = {
     black: "#101828",
     blackSecond: "rgba(16, 24, 40, 0.2)",
     blackThird: "rgba(16, 24, 40, 0.1)",
+    blackBtn: "rgba(63, 62, 63, 0.1)",
     grey: "#475467",
     greyPlaceholder: "rgba(16, 24, 40, 0.6)",
     red: "#E44848",

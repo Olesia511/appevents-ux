@@ -3,7 +3,6 @@ import { fetchEventsPage } from "./operations";
 
 const eventsInitialState = {
   items: [],
-  totalNumberCampers: 0,
   isLoading: false,
   error: null,
 };

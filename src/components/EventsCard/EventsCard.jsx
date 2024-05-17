@@ -1,4 +1,3 @@
-import { useState } from "react";
 import image1 from "../../assets/backgr-1.jpg";
 import image2 from "../../assets/backgr-2.jpeg";
 import image3 from "../../assets/backgr-3.png";
@@ -15,22 +14,30 @@ import {
   Description,
   EventData,
   EventDataWrapper,
-  EventsBtn,
   EventsBtnWrapper,
   StyledLinkBtn,
   TitleOrganizer,
 } from "./EventsCard.styled";
-import { ModalWindow } from "../Modal/Modal";
-import { EventCardFullData } from "./EventCardFullData";
+import { useDispatch } from "react-redux";
+import { addEventsForRegister } from "../../redux/registerEvent/slice";
+import { fetchParticipants } from "../../redux/participants/operations";
 
 export const EventsCard = (eventData) => {
+  const dispatch = useDispatch();
   const arr = [image1, image2, image3, image4, image5, image6];
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const randomNumber = () => Math.floor(Math.random() * 6) + 1;
   const num = arr[randomNumber() - 1];
 
   const { _id, title, description, event_date, organizer } = eventData.eventData;
+
+  const handleEventsForRegister = (e, id) => {
+    dispatch(addEventsForRegister(id));
+  };
+
+  const getAllParticipants = (id) => {
+    dispatch(fetchParticipants(id));
+  };
 
   return (
     <>
@@ -47,23 +54,16 @@ export const EventsCard = (eventData) => {
 
           <TitleOrganizer>Organizer: {organizer}</TitleOrganizer>
           <EventsBtnWrapper>
-            <StyledLinkBtn to="/register">Register</StyledLinkBtn>
-            <EventsBtn
-              type="button"
-              onClick={() => {
-                setIsModalOpen(true);
-              }}
-            >
+            <StyledLinkBtn to="/register" onClick={(e) => handleEventsForRegister(e, _id)}>
+              Register
+            </StyledLinkBtn>
+
+            <StyledLinkBtn to={`/participants/:${_id}`} onClick={() => getAllParticipants(_id)}>
               View
-            </EventsBtn>
+            </StyledLinkBtn>
           </EventsBtnWrapper>
         </EventDataWrapper>
       </CardWrapper>
-      {isModalOpen && (
-        <ModalWindow isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <EventCardFullData eventId={_id} />
-        </ModalWindow>
-      )}
     </>
   );
 };

@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { Layout } from "./components/Layout";
+import ParticipantsPage from "./pages/ParticipantsPage";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const EventsPage = lazy(() => import("pages/EventsPage.jsx"));
@@ -16,6 +17,7 @@ export const App = () => {
             <Route index element={<HomePage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/participants/:id" element={<ParticipantsPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace={true} />} />
         </Routes>

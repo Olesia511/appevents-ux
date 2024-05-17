@@ -1,4 +1,4 @@
-import closeSvg from "assets/close.svg";
+import sprite from "assets/sprite.svg";
 import { useEffect } from "react";
 import { ModalContent, Modal, ModalChildren, ModalCloseBtn, ModalClosetSvg } from "./Modal.styled";
 
@@ -37,7 +37,7 @@ export const ModalWindow = ({ isOpen, onClose, children }) => {
           <ModalContent>
             <ModalCloseBtn onClick={onClose}>
               <ModalClosetSvg>
-                <use href={`${closeSvg}#icon-x`} />
+                <use href={`${sprite}#icon-x`} />
               </ModalClosetSvg>
             </ModalCloseBtn>
             <ModalChildren>{children}</ModalChildren>
