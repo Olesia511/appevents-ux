@@ -13,18 +13,13 @@ import {
   RadioLabelWrapper,
   StyledLinkBtn,
 } from "./FormRegister.styled";
-// import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRegisterEventId } from "../../redux/registerEvent/selectors";
-// import { selectEvents } from "../../redux/events/selectors";
 import { StyledDatepicker } from "../DatePicker/StyledDatePicker";
 import { selectorDateBirth } from "../../redux/dateBirth/selectors";
 import { addParticipants } from "../../redux/participants/operations";
-// import { toastIsUserRegister } from "../../helpers/toasts";
-// import { StyledLink } from "../Header/Header.styled";
-// import { selectParticipantsError } from "../../redux/participants/selectors";
-// import { addParticipants } from "../../redux/participants/operations";
+import { changeDate } from "../../redux/dateBirth/slice";
 
 // const Select = React.forwardRef(({ onChange, onBlur, name, label, eventsArr }, ref) => (
 //   <>
@@ -45,7 +40,6 @@ export function FormRegister() {
   // const allEvents = useSelector(selectEvents);
   // const eventById = allEvents.find((el) => el._id === idRegister);
   const birthDay = useSelector(selectorDateBirth);
-  // const createParticipantsError = useSelector(selectParticipantsError);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -82,12 +76,8 @@ export function FormRegister() {
     };
 
     dispatch(addParticipants(user));
-    // if (createParticipantsError !== null) {
-    //   console.log(`createParticipantsError--------`, createParticipantsError);
-    //   // toastIsUserRegister();
-    // }
+    dispatch(changeDate(new Date().toISOString()));
     navigate("/events", { replace: true });
-    // <StyledLink to="/events">Events</StyledLink>;
   };
 
   return (
@@ -122,7 +112,7 @@ export function FormRegister() {
 
       <FormLabel>
         Date of birth:
-        <StyledDatepicker {...register("dateBirth222222")} />
+        <StyledDatepicker />
       </FormLabel>
 
       <p>Where did you hear about this event?</p>
