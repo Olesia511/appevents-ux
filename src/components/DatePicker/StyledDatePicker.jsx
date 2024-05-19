@@ -1,4 +1,4 @@
-import sprite from "assets/sprite.svg";
+// import sprite from "assets/sprite.svg";
 import { forwardRef, useState, useEffect, useRef } from "react";
 import { format, subMonths, addMonths } from "date-fns";
 import DatePicker from "react-datepicker";
@@ -11,7 +11,6 @@ import { changeDate } from "../../redux/dateBirth/slice";
 import { selectorDateBirth } from "../../redux/dateBirth/selectors";
 
 const StyledDatepicker = forwardRef((props, ref) => {
-
   const dispatch = useDispatch();
   const selectDate = useSelector(selectorDateBirth);
 
@@ -49,7 +48,6 @@ const StyledDatepicker = forwardRef((props, ref) => {
     }, [value]);
 
     const handleChange = (e) => {
-
       const value = e.target.value.replace(/\D/g, "");
 
       let formattedValue = value;
@@ -146,8 +144,15 @@ const StyledDatepicker = forwardRef((props, ref) => {
         showIcon
         toggleCalendarOnIconClick
         icon={
-          <StyledSvgCalendar>
-            <use href={`${sprite}#icon-calendar`} />
+          <StyledSvgCalendar xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 32 32">
+            <use xlinkHref="#icon-calendar" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M25.333 5.333H6.666A2.667 2.667 0 0 0 3.999 8v18.667a2.667 2.667 0 0 0 2.667 2.667h18.667A2.667 2.667 0 0 0 28 26.667V8a2.667 2.667 0 0 0-2.667-2.667zm-4-2.666V8M10.667 2.667V8M4 13.333h24"
+            />
+
+            {/* <use href={`${sprite}#icon-calendar`} /> */}
           </StyledSvgCalendar>
         }
         closeOnScroll={(e) => e.target !== ""}
@@ -175,8 +180,14 @@ const StyledDatepicker = forwardRef((props, ref) => {
               aria-label="Previous Month"
               onClick={decreaseMonth}
             >
-              <StyledSvgArrowCalendar onClick={handlePreviousMonth}>
-                <use href={`${sprite}#icon-arrow-left`} />
+              <StyledSvgArrowCalendar
+                onClick={handlePreviousMonth}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+              >
+                <use xlinkHref="#icon-arrow-left" />
+                <path d="M20.943 5.724a1.333 1.333 0 0 1 0 1.886l-8.391 8.391 8.391 8.391a1.333 1.333 0 1 1-1.886 1.886l-9.333-9.333a1.333 1.333 0 0 1 0-1.886l9.333-9.333a1.333 1.333 0 0 1 1.886 0z" />
               </StyledSvgArrowCalendar>
             </StyledBtnArrow>
 
@@ -188,8 +199,14 @@ const StyledDatepicker = forwardRef((props, ref) => {
               aria-label="Next Month"
               onClick={increaseMonth}
             >
-              <StyledSvgArrowCalendar onClick={handleNextMonth}>
-                <use href={`${sprite}#icon-arrow-right`} />
+              <StyledSvgArrowCalendar
+                onClick={handleNextMonth}
+                viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <use xlinkHref="#icon-arrow-right" />
+                <path d="M11.057 26.276a1.333 1.333 0 0 1 0-1.886l8.391-8.391-8.391-8.391a1.333 1.333 0 1 1 1.886-1.886l9.333 9.333a1.333 1.333 0 0 1 0 1.886l-9.333 9.333a1.333 1.333 0 0 1-1.886 0z" />
               </StyledSvgArrowCalendar>
             </StyledBtnArrow>
           </StyledMonthsWrapper>
