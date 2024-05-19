@@ -21,24 +21,8 @@ import { selectorDateBirth } from "../../redux/dateBirth/selectors";
 import { addParticipants } from "../../redux/participants/operations";
 import { changeDate } from "../../redux/dateBirth/slice";
 
-// const Select = React.forwardRef(({ onChange, onBlur, name, label, eventsArr }, ref) => (
-//   <>
-//     <label>{label}</label>
-//     <select name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
-//       {eventsArr.map(({ title, _id, event_date }) => (
-//         <option key={_id} value={`${_id}`} onChange={onChange}>
-//           {title} ( {event_date} )
-//         </option>
-//       ))}
-//     </select>
-//   </>
-// ));
-// Select.displayName = "Select";
-
 export function FormRegister() {
   const idRegister = useSelector(selectRegisterEventId);
-  // const allEvents = useSelector(selectEvents);
-  // const eventById = allEvents.find((el) => el._id === idRegister);
   const birthDay = useSelector(selectorDateBirth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -82,8 +66,6 @@ export function FormRegister() {
 
   return (
     <FormStyled onSubmit={handleSubmit(onSubmit)}>
-      {/* <Select label="Events" {...register("Events")} eventsArr={allEvents} onChange={onChangeEvent} /> */}
-
       <FormLabel>
         Full Name:
         <FormInput

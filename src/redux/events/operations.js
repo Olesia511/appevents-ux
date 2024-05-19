@@ -3,9 +3,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://appevents-back.onrender.com";
 
-export const fetchEventsPage = createAsyncThunk("events/fetchNextPage", async (_, thunkAPI) => {
+export const fetchEventsPage = createAsyncThunk("events/fetchNextPage", async ({ page, limit }, thunkAPI) => {
   try {
-    const response = await axios.get(`api/events`);
+    const response = await axios.get(`api/events?page=${page}&limit=${limit}`);
 
     return response.data;
   } catch (error) {

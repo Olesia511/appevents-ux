@@ -24,7 +24,6 @@ export const FormInput = styled.input`
   font-size: 16px;
   line-height: 1.25;
   color: ${(p) => p.theme.color.black};
-  /* margin-bottom: 14px; */
 
   &:focus,
   &:active {

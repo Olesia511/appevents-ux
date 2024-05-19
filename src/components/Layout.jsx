@@ -16,7 +16,13 @@ export const Layout = () => {
           marginTop: "100px",
         }}
       >
-        <Suspense fallback={<div>LOADING.......</div>}>
+        <Suspense
+          fallback={
+            <div className="loader-wrapper">
+              <div className="loader"></div>
+            </div>
+          }
+        >
           <Outlet />
         </Suspense>
       </main>

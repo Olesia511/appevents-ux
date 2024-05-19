@@ -3,6 +3,7 @@ import { fetchEventsPage } from "./operations";
 
 const eventsInitialState = {
   items: [],
+  total: 0,
   isLoading: false,
   error: null,
 };
@@ -27,11 +28,12 @@ const eventsSlice = createSlice({
       .addCase(fetchEventsPage.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        state.total = action.payload.totalCount;
 
-        if (state.items.length === 0) state.items = action.payload;
+        if (state.items.length === 0) state.items = action.payload.data;
         if (state.items.length > 0) {
           const eventsIdArr = state.items.map((item) => item._id);
-          const newEvents = action.payload.filter((item) => !eventsIdArr.includes(item._id));
+          const newEvents = action.payload.data.filter((item) => !eventsIdArr.includes(item._id));
 
           state.items.push(...newEvents);
         }
